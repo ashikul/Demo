@@ -40,7 +40,7 @@ body {
 .preloader div {
 	display: none;
 	/* Preload the Second Pricing Image */
-	background: url(../img/pricing2.jpg) no-repeat 9999px 9999px;
+	background: url(../img/comprtroller.jpg) no-repeat 9999px 9999px;
 	background-position: 9999px 9999px;
 }
 
@@ -557,7 +557,7 @@ section {
 /* Pricing */
 
 #pricing {
-	background: #00a8ff url('../img/work-1000618_1920.jpg') no-repeat center center;
+	background: #00a8ff url('../img/Construction.jpg') no-repeat center center;
 	-webkit-background-size: cover;
 	background-size: cover;
 	-webkit-transition: background-image 0.6s linear 0.3s;
