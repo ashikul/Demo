@@ -1,4 +1,21 @@
 <div class="col-md-12" ng-controller="AdminpageCtrl">
 
-    ADMIN
+    ADMIN & COMPTROLLER PAGE <br>
+    <ul>
+        <li ng-repeat="project in projects">
+
+            <ul>
+                <li> {{project.fullName}}</li>
+                <li> {{project.emailAddress}}</li>
+                <li> {{project.taxNumber}}</li>
+                <li> {{project.lotNumber}}</li>
+                <li> {{project.blockNumber}}</li>
+                <li> {{project.borough}}</li>
+            </ul>
+            <!--&lt;!&ndash; edit a message &ndash;&gt;-->
+            <!--<input ng-model="message.text" ng-change="messages.$save(message)" />-->
+            <!--&lt;!&ndash; delete a message &ndash;&gt;-->
+            <!--<button ng-click="messages.$remove(message)">Delete Message</button>-->
+        </li>
+    </ul>
 </div>

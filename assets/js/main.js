@@ -8,7 +8,6 @@ jQuery(function ($) {
     // Window Load
     // $(window).load(function() {
     $(document).ready(function () {
-        console.log('hello!');
 
         // Preloader
         $('.intro-tables, .parallax, header').css('opacity', '1');

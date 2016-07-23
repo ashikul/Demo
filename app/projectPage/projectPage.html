@@ -1,4 +1,66 @@
 <div class="col-md-12" ng-controller="ProjectpageCtrl">
 
-    PROJECT
+    <div class="row">
+        <button type="submit" class="btn btn-blue" ng-click="goToAdminPage()">Admin Page</button>
+    </div>
+
+    <br>
+
+    <div class="row">
+        PROJECT PAGE
+        <br>Full Name: {{projectDataService.fullName}}
+        <br>Email Address: {{projectDataService.emailAddress}}
+        <br>Tax Number: {{projectDataService.taxNumber}}
+        <br>Lot Number: {{projectDataService.lotNumber}}
+        <br>Block Number: {{projectDataService.blockNumber}}
+        <br>Borough: {{projectDataService.borough}}
+    </div>
+
+    <!--<br>-->
+    <!--Current Project retrived from db <br>-->
+    <!--<ul>-->
+        <!--<li>Full Name:{{currentProject.fullName}}</li>-->
+        <!--<li>Email Address: {{currentProject.emailAddress}}</li>-->
+        <!--<li>Tax Number: {{currentProject.taxNumber}}</li>-->
+        <!--<li>Lot Number: {{currentProject.lotNumber}}</li>-->
+        <!--<li>Block Number: {{currentProject.blockNumber}}</li>-->
+        <!--<li>Borough: {{currentProject.borough}}</li>-->
+    <!--</ul>-->
+    <!--<br>-->
+
+    <div class="row">
+        <button type="submit" class="btn btn-info" ng-click="addProject()">Add this project to database</button>
+    </div>
+
+    <!--<form action="" class="col-md-4">-->
+        <!--<input type="text" class="form-control  " placeholder="Full Name">-->
+        <!--<input type="text" class="form-control   " placeholder="Email Address">-->
+        <!--<input type="text" class="form-control  " placeholder="Tax Number">-->
+        <!--<input type="text" class="form-control  " placeholder="Lot Number">-->
+        <!--<input type="text" class="form-control  " placeholder="Block Number">-->
+        <!--&lt;!&ndash;<div class="dropdown">&ndash;&gt;-->
+            <!--&lt;!&ndash;<button id="dLabel" class="form-control form-white dropdown" type="button"&ndash;&gt;-->
+                    <!--&lt;!&ndash;data-toggle="dropdown"&ndash;&gt;-->
+                    <!--&lt;!&ndash;aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+                <!--&lt;!&ndash;Borough&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;<ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="animated lightSpeedIn"><a href="#">Brooklyn</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="animated lightSpeedIn"><a href="#">Bronx</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="animated lightSpeedIn"><a href="#">Manhattan</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="animated lightSpeedIn"><a href="#">Queens</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="checkbox-holder text-left">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="checkbox">&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="checkbox" value="None" id="squaredOne" name="check"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<label&ndash;&gt;-->
+                    <!--&lt;!&ndash;for="squaredOne"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<button type="submit" class="btn btn-submit" ng-click="submit()" >Submit</button>-->
+    <!--</form>-->
+
+    <!--<li ng-repeat="item in list | filter:name">{{ item | json }}</li>-->
+
 </div>

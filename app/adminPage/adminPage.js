@@ -1,4 +1,9 @@
-angular.module('CountMe').controller('AdminpageCtrl', function ($scope) {
+angular.module('CountMe').controller('AdminpageCtrl', function ($scope,$firebaseArray ) {
 
-    console.log('hello-admin!!');
+
+
+    var ref = firebase.database().ref().child("projects");
+    // create a synchronized array
+    $scope.projects = $firebaseArray(ref);
+
 });
