@@ -1,18 +1,18 @@
-describe('AdminpageCtrl', function() {
+describe('AdminpageCtrl', function () {
 
     beforeEach(module('CountMe'));
 
-    var scope,ctrl;
+    var scope, ctrl;
 
-    beforeEach(inject(function($rootScope, $controller) {
-      scope = $rootScope.$new();
-      ctrl = $controller('AdminpageCtrl', {$scope: scope});
+    beforeEach(inject(function ($rootScope, $controller) {
+        scope = $rootScope.$new();
+        ctrl = $controller('AdminpageCtrl', {$scope: scope});
     }));
 
-    it('should ...', inject(function() {
+    it('should ...', inject(function () {
 
         expect(1).toEqual(1);
-        
+
     }));
 
 });

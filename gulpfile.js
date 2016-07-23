@@ -31,11 +31,11 @@ var htmlminOptions = {
     removeStyleLinkTypeAttributes: true
 };
 
-gulp.task('clean', function() {
+gulp.task('clean', function () {
     rimraf.sync('dist');
 });
 
-gulp.task('css', ['clean'], function() {
+gulp.task('css', ['clean'], function () {
     return gulp.src('app.less')
         .pipe(less())
         .pipe(cssmin({keepSpecialComments: 0}))
@@ -43,17 +43,17 @@ gulp.task('css', ['clean'], function() {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('js', ['clean'], function() {
+gulp.task('js', ['clean'], function () {
 
-    var templateStream = gulp.src(['!node_modules/**','!index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!bower_components/**','**/*.html'])
+    var templateStream = gulp.src(['!node_modules/**', '!index.html', '!_SpecRunner.html', '!.grunt/**', '!dist/**', '!bower_components/**', '**/*.html'])
         .pipe(htmlmin(htmlminOptions))
         .pipe(ngHtml2js({
             moduleName: packagejson.name
         }));
 
-    var jsStream = domSrc({file:'index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
+    var jsStream = domSrc({file: 'index.html', selector: 'script[data-build!="exclude"]', attribute: 'src'});
 
-    var combined = streamqueue({ objectMode: true });
+    var combined = streamqueue({objectMode: true});
 
     combined.queue(jsStream);
     combined.queue(templateStream);
@@ -64,23 +64,22 @@ gulp.task('js', ['clean'], function() {
         .pipe(uglify())
         .pipe(gulp.dest('dist/'));
 
-
     /* 
-        Should be able to add to an existing stream easier, like:
-        gulp.src([... partials html ...])
-          .pipe(htmlmin())
-          .pipe(ngHtml2js())
-          .pipe(domSrc(... js from script tags ...))  <-- add new files to existing stream
-          .pipe(concat())
-          .pipe(ngmin())
-          .pipe(uglify())
-          .pipe(gulp.dest());
+     Should be able to add to an existing stream easier, like:
+     gulp.src([... partials html ...])
+     .pipe(htmlmin())
+     .pipe(ngHtml2js())
+     .pipe(domSrc(... js from script tags ...))  <-- add new files to existing stream
+     .pipe(concat())
+     .pipe(ngmin())
+     .pipe(uglify())
+     .pipe(gulp.dest());
 
-        https://github.com/wearefractal/vinyl-fs/issues/9
-    */
+     https://github.com/wearefractal/vinyl-fs/issues/9
+     */
 });
 
-gulp.task('indexHtml', ['clean'], function() {
+gulp.task('indexHtml', ['clean'], function () {
     return gulp.src('index.html')
         .pipe(gCheerio(function ($) {
             $('script[data-remove!="exclude"]').remove();
@@ -92,19 +91,19 @@ gulp.task('indexHtml', ['clean'], function() {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('images', ['clean'], function(){
+gulp.task('images', ['clean'], function () {
     return gulp.src('img/**')
         .pipe(imagemin())
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('fonts', ['clean'], function(){
+gulp.task('fonts', ['clean'], function () {
     return gulp.src('bower_components/font-awesome/fonts/**')
         .pipe(gulp.dest('dist/bower_components/font-awesome/fonts/'));
 });
 
-gulp.task('jshint', function(){
-    gulp.src(['!node_modules/**','!.grunt/**','!dist/**','!bower_components/**','**/*.js'])
+gulp.task('jshint', function () {
+    gulp.src(['!node_modules/**', '!.grunt/**', '!dist/**', '!bower_components/**', '**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });
@@ -113,30 +112,30 @@ gulp.task('build', ['clean', 'css', 'js', 'indexHtml', 'images', 'fonts']);
 
 /* 
 
--specifying clean dependency on each task is ugly
-https://github.com/robrich/orchestrator/issues/26
+ -specifying clean dependency on each task is ugly
+ https://github.com/robrich/orchestrator/issues/26
 
--gulp-jasmine needs a phantomjs option
-https://github.com/sindresorhus/gulp-jasmine/issues/2
+ -gulp-jasmine needs a phantomjs option
+ https://github.com/sindresorhus/gulp-jasmine/issues/2
 
-*/
+ */
 
 /*
-    "gulp-dom-src": "~0.1.0",
-    "gulp-concat": "~2.1.7",
-    "gulp-uglify": "~0.2.1",
-    "gulp-cssmin": "~0.1.3",
-    "gulp-imagemin": "~0.1.5",
-    "gulp-less": "~1.2.2",
-    "gulp-cheerio": "~0.2.0",
-    "gulp-rename": "~1.2.0",
-    "gulp-ng-html2js": "~0.1.6",
-    "gulp-ngmin": "~0.1.2",
-    "gulp-htmlmin": "~0.1.2",
-    "gulp-jshint": "~1.5.0",
-    "gulp-jasmine": "~0.2.0",
-    "jshint-stylish": "~0.1.5",
-    "rimraf": "~2.2.6",
-    "streamqueue": "0.0.5",
-    "gulp": "~3.5.5"
-*/
+ "gulp-dom-src": "~0.1.0",
+ "gulp-concat": "~2.1.7",
+ "gulp-uglify": "~0.2.1",
+ "gulp-cssmin": "~0.1.3",
+ "gulp-imagemin": "~0.1.5",
+ "gulp-less": "~1.2.2",
+ "gulp-cheerio": "~0.2.0",
+ "gulp-rename": "~1.2.0",
+ "gulp-ng-html2js": "~0.1.6",
+ "gulp-ngmin": "~0.1.2",
+ "gulp-htmlmin": "~0.1.2",
+ "gulp-jshint": "~1.5.0",
+ "gulp-jasmine": "~0.2.0",
+ "jshint-stylish": "~0.1.5",
+ "rimraf": "~2.2.6",
+ "streamqueue": "0.0.5",
+ "gulp": "~3.5.5"
+ */

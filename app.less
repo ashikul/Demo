@@ -4,10 +4,8 @@
 @url: "/assets/img/";
 @font-url: "/assets/img/fonts/eleganticons/";
 
-
 @import "bower_components/font-awesome/less/font-awesome.less";
 @fa-font-path: "bower_components/font-awesome/fonts";
-
 
 @import "assets/css/normalize";
 @import "assets/css/owl";
@@ -17,7 +15,6 @@
 @import "assets/css/bootstrap";
 @import "assets/css/countme";
 
-
 /* Component LESS */
 @import "app/homePage/homePage";
 @import "app/projectPage/projectPage";
@@ -26,7 +23,9 @@
 /* Add Component LESS Above */
 
 /* Required for Angular UI Bootstrap */
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
 
 /* Personal preference for BS modal.  The LESS below makes the backdrop white and
    causes the modal to fade in rather than slide in. */

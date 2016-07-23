@@ -1,4 +1,3 @@
-angular.module('CountMe').controller('HomepageCtrl',function($scope){
-
+angular.module('CountMe').controller('HomepageCtrl', function ($scope) {
 
 });

@@ -1,7 +1,6 @@
-angular.module('CountMe', ['ui.bootstrap','ui.router','ngAnimate']);
+angular.module('CountMe', ['ui.bootstrap', 'ui.router', 'ngAnimate']);
 
-angular.module('CountMe').config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-
+angular.module('CountMe').config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider.state('homePage', {
         url: '/',
@@ -18,15 +17,14 @@ angular.module('CountMe').config(function($stateProvider, $urlRouterProvider, $l
     /* Add New States Above */
     $urlRouterProvider.otherwise('/');
 
-
 });
 
-angular.module('CountMe').run(function($rootScope) {
+angular.module('CountMe').run(function ($rootScope) {
 
-    $rootScope.safeApply = function(fn) {
+    $rootScope.safeApply = function (fn) {
         var phase = $rootScope.$$phase;
-        if (phase === '$apply' || phase === '$digest') {
-            if (fn && (typeof(fn) === 'function')) {
+        if(phase === '$apply' || phase === '$digest') {
+            if(fn && (typeof(fn) === 'function')) {
                 fn();
             }
         } else {
