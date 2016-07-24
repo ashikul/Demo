@@ -135,12 +135,18 @@ module.exports = function (grunt) {
             }
         },
         ngAnnotate: {
+            // options: {
+            //   singleQuotes: false,
+            // },
             main: {
                 src: 'temp/app.full.js',
                 dest: 'temp/app.full.js'
             }
         },
         uglify: {
+            options: {
+                mangle: false
+            },
             main: {
                 src: 'temp/app.full.js',
                 dest: 'dist/app.full.min.js'
