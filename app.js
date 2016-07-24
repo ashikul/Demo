@@ -13,6 +13,7 @@ angular.module('CountMe').config(function ($stateProvider, $urlRouterProvider, $
     $stateProvider.state('adminPage', {
         url: '/admin/',
         templateUrl: 'app/adminPage/adminPage.html'
+ 
     });
     /* Add New States Above */
     $urlRouterProvider.otherwise('/');

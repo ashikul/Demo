@@ -9,7 +9,8 @@ angular.module('CountMe').controller('HomepageCtrl', function ($scope, $uibModal
             backdrop: 'static',
             templateUrl: '../app/modals/enterProject-modal/enterProject-modal.html',
             controller: 'EnterprojectModalCtrl',
-   
+
+
         });
 
     };
