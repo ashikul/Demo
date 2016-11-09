@@ -1,4 +1,4 @@
-angular.module('CountMe').factory('projectDataService',function() {
+angular.module('Scotty').factory('projectDataService',function() {
 
     var projectDataService = {
         fullName: '',

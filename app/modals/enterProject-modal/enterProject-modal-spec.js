@@ -1,6 +1,6 @@
 describe('EnterprojectModalCtrl', function() {
 
-    beforeEach(module('CountMe'));
+    beforeEach(module('Scotty'));
 
     var scope,ctrl;
 

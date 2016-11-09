@@ -1,4 +1,4 @@
-angular.module('CountMe').controller('EnterprojectModalCtrl',function($scope, $uibModalInstance, $state, projectDataService){
+angular.module('Scotty').controller('EnterprojectModalCtrl',function($scope, $uibModalInstance, $state, projectDataService){
 
 
     $scope.close = function () {

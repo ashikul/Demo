@@ -1,4 +1,4 @@
-angular.module('CountMe').controller('AdminpageCtrl', function ($scope,$firebaseArray ) {
+angular.module('Scotty').controller('AdminpageCtrl', function ($scope,$firebaseArray ) {
 
 
 

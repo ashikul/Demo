@@ -1,0 +1,74 @@
+<div class="filePage">
+    <div class="file-header">
+        <h4>Scotty</h4>
+
+        <div class="file-button-indicators">
+            <button class="btn btn-blue">Pending</button>
+            <button class="btn btn-blue">Pending</button>
+            <button class="btn btn-blue">Pending</button>
+            <button class="btn btn-blue">Pending</button>
+        </div>
+
+
+    </div>
+
+    <div class="file-table" ng-controller="FilePageCtrl">
+
+        Notaries <br>
+        <ul>
+            <li ng-repeat="document in documents">
+
+                <ul>
+                    <!--<li> {{project.fullName}}</li>-->
+                    <!--<li> {{project.emailAddress}}</li>-->
+                    <!--<li> {{project.taxNumber}}</li>-->
+                    <!--<li> {{project.lotNumber}}</li>-->
+                    <!--<li> {{project.blockNumber}}</li>-->
+                    <!--<li> {{project.borough}}</li>-->
+                </ul>
+                <!--&lt;!&ndash; edit a message &ndash;&gt;-->
+                <!--<input ng-model="message.text" ng-change="messages.$save(message)" />-->
+                <!--&lt;!&ndash; delete a message &ndash;&gt;-->
+                <!--<button ng-click="messages.$remove(message)">Delete Message</button>-->
+            </li>
+        </ul>
+    </div>
+
+    <form name="form">
+        <!--Single Image with validations-->
+        <!--<div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"-->
+        <!--ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"-->
+        <!--ngf-resize="{width: 100, height: 100}">Select-->
+        <!--</div>-->
+        <div ngf-select="" ngf-drop="" ng-model="uploadedFiles" ngf-model-invalid="invalidFiles"
+             ngf-multiple="multiple" ngf-pattern="pattern"   ng-disabled="disabledUpload"
+             ngf-pattern="'.pdf,.doc,.ppt,.txt'"
+
+             ngf-keep="'distinct'"
+             ngf-max-files="maxFiles"
+             ngf-max-total-size="'100MB'"
+             class="drop-box"
+             ngf-drop-available="dropAvailable">Select File
+            <span ng-show="dropAvailable"> or Drop File</span>
+        </div>
+        {{uploadedFiles}}
+
+        <button type="submit" ng-click="submit()">submit</button>
+    </form>
+
+
+    <div class="file-footer"></div>
+
+
+    <!--accepted formats-->
+    <!--ngf-model-options="modelOptionsObj"-->
+    <!--ngf-capture="capture"-->
+    <!--ngf-drag-over-class="dragOverClassObj"-->
+    <!--ngf-accept="acceptSelect"-->
+    <!--ngf-validate="validateObj"-->
+    <!--ngf-resize="resizeObj"-->
+    <!--ngf-resize-if="resizeIfFn($file, $width, $height)" ngf-dimensions="dimensionsFn($file, $width, $height)"-->
+    <!--ngf-duration="durationFn($file, $duration)"-->
+    <!--ngf-ignore-invalid="ignoreInvalid"-->
+    <!--ngf-run-all-validations="runAllValidations"-->
+</div>

@@ -1,4 +1,4 @@
-angular.module('CountMe').controller('HomepageCtrl', function ($scope, $uibModal) {
+angular.module('Scotty').controller('HomepageCtrl', function ($scope, $uibModal) {
 
 
 
