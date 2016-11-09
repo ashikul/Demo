@@ -35,40 +35,78 @@
     </div>
 
     <form name="form">
+
+
+        Drop File:
+        <div ngf-drop ngf-select
+             ng-model="files"
+             class="drop-box"
+             ngf-drag-over-class="'dragover'"
+             ngf-multiple="true"
+             ngf-allow-dir="true"
+             ngf-keep="'distinct'"
+             ngf-max-files="10"
+             ngf-max-total-size="'100MB'"
+             ngf-pattern="'.pdf,.doc,.ppt,.txt'">Drop pdfs or images here or click to upload
+        </div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        Files:
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+        </ul>
+        Upload Log:
+        <pre>{{log}}</pre>
+
+
+
+
         <!--Single Image with validations-->
         <!--<div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"-->
         <!--ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"-->
         <!--ngf-resize="{width: 100, height: 100}">Select-->
         <!--</div>-->
-        <div ngf-select="" ngf-drop="" ng-model="uploadedFiles" ngf-model-invalid="invalidFiles"
-             ngf-multiple="multiple" ngf-pattern="pattern"   ng-disabled="disabledUpload"
-             ngf-pattern="'.pdf,.doc,.ppt,.txt'"
+        <!--<div ngf-select="" ngf-drop="uploadFiles($files, $invalidFiles)" ng-model="uploadFile"-->
+             <!--ngf-model-invalid="invalidFiles"-->
+             <!--ngf-multiple="multiple" ngf-pattern="pattern" ng-disabled="disabledUpload"-->
+             <!--ngf-pattern="'.pdf,.doc,.ppt,.txt'"-->
+             <!--ngf-keep="'distinct'"-->
+             <!--ngf-max-files="maxFiles"-->
+             <!--ngf-max-total-size="'100MB'"-->
+             <!--class="drop-box"-->
+             <!--ngf-drop-available="dropAvailable">Select File-->
+            <!--<span ng-show="dropAvailable"> or Drop File</span>-->
+            <!--</div>-->
+            <!--{{uploadedFiles}}-->
 
-             ngf-keep="'distinct'"
-             ngf-max-files="maxFiles"
-             ngf-max-total-size="'100MB'"
-             class="drop-box"
-             ngf-drop-available="dropAvailable">Select File
-            <span ng-show="dropAvailable"> or Drop File</span>
+            <!--<button type="submit" ng-click="submit()">submit</button>-->
+            <!--</form>-->
+            <!--<br><br>-->
+            <!--Files:-->
+            <!--<ul>-->
+            <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}-->
+            <!--<span class="progress" ng-show="f.progress >= 0">-->
+            <!--<div style="width:{{f.progress}}%"-->
+            <!--ng-bind="f.progress + '%'"></div>-->
+            <!--</span>-->
+            <!--</li>-->
+            <!--<li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--{{errorMsg}}-->
+
+            End
+            <div class="file-footer"></div>
+
+
+            <!--accepted formats-->
+            <!--ngf-model-options="modelOptionsObj"-->
+            <!--ngf-capture="capture"-->
+            <!--ngf-drag-over-class="dragOverClassObj"-->
+            <!--ngf-accept="acceptSelect"-->
+            <!--ngf-validate="validateObj"-->
+            <!--ngf-resize="resizeObj"-->
+            <!--ngf-resize-if="resizeIfFn($file, $width, $height)" ngf-dimensions="dimensionsFn($file, $width, $height)"-->
+            <!--ngf-duration="durationFn($file, $duration)"-->
+            <!--ngf-ignore-invalid="ignoreInvalid"-->
+            <!--ngf-run-all-validations="runAllValidations"-->
         </div>
-        {{uploadedFiles}}
-
-        <button type="submit" ng-click="submit()">submit</button>
-    </form>
-
-
-    <div class="file-footer"></div>
-
-
-    <!--accepted formats-->
-    <!--ngf-model-options="modelOptionsObj"-->
-    <!--ngf-capture="capture"-->
-    <!--ngf-drag-over-class="dragOverClassObj"-->
-    <!--ngf-accept="acceptSelect"-->
-    <!--ngf-validate="validateObj"-->
-    <!--ngf-resize="resizeObj"-->
-    <!--ngf-resize-if="resizeIfFn($file, $width, $height)" ngf-dimensions="dimensionsFn($file, $width, $height)"-->
-    <!--ngf-duration="durationFn($file, $duration)"-->
-    <!--ngf-ignore-invalid="ignoreInvalid"-->
-    <!--ngf-run-all-validations="runAllValidations"-->
-</div>
