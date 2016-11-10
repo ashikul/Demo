@@ -3,10 +3,11 @@
         <h4>Scotty</h4>
 
         <div class="file-button-indicators">
-            <button class="btn btn-blue">Pending</button>
-            <button class="btn btn-blue">Pending</button>
-            <button class="btn btn-blue">Pending</button>
-            <button class="btn btn-blue">Pending</button>
+            <button class="btn btn-blue" disabled>All</button>
+            <button class="btn btn-blue" disabled>Pending</button>
+            <button class="btn btn-blue" disabled>Approved</button>
+            <button class="btn btn-blue" disabled>Rejected</button>
+
         </div>
 
 
@@ -15,98 +16,132 @@
     <div class="file-table" ng-controller="FilePageCtrl">
 
         Notaries <br>
-        <ul>
-            <li ng-repeat="document in documents">
+        <!--<div class="test" ng-repeat="document in documents">-->
+        <!--name: {{document.name}}-->
+        <!--</div>-->
 
-                <ul>
-                    <!--<li> {{project.fullName}}</li>-->
-                    <!--<li> {{project.emailAddress}}</li>-->
-                    <!--<li> {{project.taxNumber}}</li>-->
-                    <!--<li> {{project.lotNumber}}</li>-->
-                    <!--<li> {{project.blockNumber}}</li>-->
-                    <!--<li> {{project.borough}}</li>-->
-                </ul>
-                <!--&lt;!&ndash; edit a message &ndash;&gt;-->
-                <!--<input ng-model="message.text" ng-change="messages.$save(message)" />-->
-                <!--&lt;!&ndash; delete a message &ndash;&gt;-->
-                <!--<button ng-click="messages.$remove(message)">Delete Message</button>-->
-            </li>
-        </ul>
+        <br>
+
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>ID</td>
+                <td>Details</td>
+                <td>Status</td>
+                <td>Actions</td>
+
+
+            </tr>
+            <tr ng-repeat="document in documents track by document.name">
+                <td>{{::document.timeCreated |date:"MM/dd/yyyy"}}</td>
+                <td>{{document.md5 | limitTo:7}}</td>
+                <td>{{document.name}}</td>
+                <td>{{document.status}}</td>
+                <td>
+                    <button class="btn btn-primary" ng-click="approve(document)">Approve</button>
+                    <button class="btn btn-danger" ng-click="reject(document)" >Reject</button>
+                    <button class="btn btn-white-fill" ng-click="view(document)">View</button>
+
+
+                </td>
+
+
+            </tr>
+        </table>
+
     </div>
 
-    <form name="form">
+    <!--{{linkr}}-->
+
+    <!--<a ng-href="{{linkr}}">linkr1</a>-->
 
 
-        Drop File:
-        <div ngf-drop ngf-select
-             ng-model="files"
-             class="drop-box"
-             ngf-drag-over-class="'dragover'"
-             ngf-multiple="true"
-             ngf-allow-dir="true"
-             ngf-keep="'distinct'"
-             ngf-max-files="10"
-             ngf-max-total-size="'100MB'"
-             ngf-pattern="'.pdf,.doc,.ppt,.txt'">Drop pdfs or images here or click to upload
-        </div>
-        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        Files:
-        <ul>
-            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-        </ul>
-        Upload Log:
-        <pre>{{log}}</pre>
+    <!--//chrome & firefox only-->
+    <!--<iframe src="" width='400' height='300' allowfullscreen webkitallowfullscreen></iframe>-->
 
+    <div class="two-column-container">
+        <form class="drop-form" name="form">
 
-
-
-        <!--Single Image with validations-->
-        <!--<div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"-->
-        <!--ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"-->
-        <!--ngf-resize="{width: 100, height: 100}">Select-->
-        <!--</div>-->
-        <!--<div ngf-select="" ngf-drop="uploadFiles($files, $invalidFiles)" ng-model="uploadFile"-->
-             <!--ngf-model-invalid="invalidFiles"-->
-             <!--ngf-multiple="multiple" ngf-pattern="pattern" ng-disabled="disabledUpload"-->
-             <!--ngf-pattern="'.pdf,.doc,.ppt,.txt'"-->
-             <!--ngf-keep="'distinct'"-->
-             <!--ngf-max-files="maxFiles"-->
-             <!--ngf-max-total-size="'100MB'"-->
-             <!--class="drop-box"-->
-             <!--ngf-drop-available="dropAvailable">Select File-->
-            <!--<span ng-show="dropAvailable"> or Drop File</span>-->
-            <!--</div>-->
-            <!--{{uploadedFiles}}-->
-
-            <!--<button type="submit" ng-click="submit()">submit</button>-->
-            <!--</form>-->
-            <!--<br><br>-->
+            <!--Drop File:-->
+            <div ngf-drop ngf-select
+                 ng-model="files"
+                 class="drop-box"
+                 ngf-drag-over-class="'dragover'"
+                 ngf-multiple="false"
+                 ngf-allow-dir="true"
+                 ngf-keep="'distinct'"
+                 ngf-max-files="10"
+                 ngf-max-total-size="'100MB'"
+                 ngf-pattern="'.pdf'">Drop PDFs here or click to upload
+            </div>
+            <!--{{files}}-->
+            <!--pdf only-->
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
             <!--Files:-->
             <!--<ul>-->
-            <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}-->
-            <!--<span class="progress" ng-show="f.progress >= 0">-->
-            <!--<div style="width:{{f.progress}}%"-->
-            <!--ng-bind="f.progress + '%'"></div>-->
-            <!--</span>-->
-            <!--</li>-->
-            <!--<li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}-->
-            <!--</li>-->
+                <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>-->
             <!--</ul>-->
-            <!--{{errorMsg}}-->
 
-            End
-            <div class="file-footer"></div>
+        </form>
 
 
-            <!--accepted formats-->
-            <!--ngf-model-options="modelOptionsObj"-->
-            <!--ngf-capture="capture"-->
-            <!--ngf-drag-over-class="dragOverClassObj"-->
-            <!--ngf-accept="acceptSelect"-->
-            <!--ngf-validate="validateObj"-->
-            <!--ngf-resize="resizeObj"-->
-            <!--ngf-resize-if="resizeIfFn($file, $width, $height)" ngf-dimensions="dimensionsFn($file, $width, $height)"-->
-            <!--ngf-duration="durationFn($file, $duration)"-->
-            <!--ngf-ignore-invalid="ignoreInvalid"-->
-            <!--ngf-run-all-validations="runAllValidations"-->
+        <div class="file-view-section">
+            <iframe src="http://plugindoc.mozdev.org/testpages/test.pdf"  width='100%' height='800px' allowfullscreen webkitallowfullscreen></iframe>
         </div>
+    </div>
+
+
+    <!--Upload Log:-->
+    <!--<pre>{{log}}</pre>-->
+
+
+    <!--Single Image with validations-->
+    <!--<div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"-->
+    <!--ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"-->
+    <!--ngf-resize="{width: 100, height: 100}">Select-->
+    <!--</div>-->
+    <!--<div ngf-select="" ngf-drop="uploadFiles($files, $invalidFiles)" ng-model="uploadFile"-->
+    <!--ngf-model-invalid="invalidFiles"-->
+    <!--ngf-multiple="multiple" ngf-pattern="pattern" ng-disabled="disabledUpload"-->
+    <!--ngf-pattern="'.pdf,.doc,.ppt,.txt'"-->
+    <!--ngf-keep="'distinct'"-->
+    <!--ngf-max-files="maxFiles"-->
+    <!--ngf-max-total-size="'100MB'"-->
+    <!--class="drop-box"-->
+    <!--ngf-drop-available="dropAvailable">Select File-->
+    <!--<span ng-show="dropAvailable"> or Drop File</span>-->
+    <!--</div>-->
+    <!--{{uploadedFiles}}-->
+
+    <!--<button type="submit" ng-click="submit()">submit</button>-->
+    <!--</form>-->
+    <!--<br><br>-->
+    <!--Files:-->
+    <!--<ul>-->
+    <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}-->
+    <!--<span class="progress" ng-show="f.progress >= 0">-->
+    <!--<div style="width:{{f.progress}}%"-->
+    <!--ng-bind="f.progress + '%'"></div>-->
+    <!--</span>-->
+    <!--</li>-->
+    <!--<li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--{{errorMsg}}-->
+
+    <!--End-->
+    <!--<div class="file-footer"></div>-->
+
+
+    <!--accepted formats-->
+    <!--ngf-model-options="modelOptionsObj"-->
+    <!--ngf-capture="capture"-->
+    <!--ngf-drag-over-class="dragOverClassObj"-->
+    <!--ngf-accept="acceptSelect"-->
+    <!--ngf-validate="validateObj"-->
+    <!--ngf-resize="resizeObj"-->
+    <!--ngf-resize-if="resizeIfFn($file, $width, $height)" ngf-dimensions="dimensionsFn($file, $width, $height)"-->
+    <!--ngf-duration="durationFn($file, $duration)"-->
+    <!--ngf-ignore-invalid="ignoreInvalid"-->
+    <!--ngf-run-all-validations="runAllValidations"-->
+</div>
