@@ -38,7 +38,6 @@ angular.module('Scotty').run(function ($rootScope) {
         }
     };
 
-
     // Initialize Firebase
     var config = {
         // apiKey: "AIzaSyBYbbS3jNmLMYgip3ab2yjrYiAsL8_Xp4A",
