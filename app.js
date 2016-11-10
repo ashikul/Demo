@@ -55,6 +55,8 @@ angular.module('Scotty').run(function ($rootScope) {
 
 });
 
+
+
 // angular.module('Scotty')
 //     .config(function ($sceProvider, $compileProvider, $logProvider) {
 //         $sceProvider.enabled(false);
@@ -66,7 +68,7 @@ angular.module('Scotty').run(function ($rootScope) {
 // angular.module('Scotty')
 //     .filter('trustAsResourceUrl', ['$sce', function ($sce) {
 //         return function (val) {
-//             // return $sce.trustAsResourceUrl(val);
-//             return $sce.getTrustedResourceUrl($sce.trustAsResourceUrl(val));
+//             return $sce.trustAsResourceUrl(val);
+//             // return $sce.getTrustedResourceUrl($sce.trustAsResourceUrl(val));
 //         };
 //     }]);

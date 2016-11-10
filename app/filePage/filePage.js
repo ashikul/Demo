@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('Scotty').controller('FilePageCtrl', function ($scope, $firebaseArray, projectDataService, $state,
-                                                                  $firebaseObject, Upload, $timeout, $log, $sce) {
+                                                                  $firebaseObject, Upload, $timeout, $log) {
 
         var ref = firebase.database().ref().child("documents");
 
@@ -21,7 +21,7 @@
             $log.debug('objects');
             $log.debug(objects);
             $scope.documents = objects;
-            $scope.hey = 1212;
+            // $scope.hey = 1212;
 
             // $scope.currentProject = documents.$getRecord(projectkey);
             // $log.debug(documents.$indexFor(projectkey));
@@ -47,13 +47,27 @@
         // };
 
         $scope.approve = function (document) {
-            $log.debug('erer');
+            var d = documents.$getRecord(document.md5);
+            d.status = 'Approved';
+            documents.$save(d);
+            // d.$save;
         };
 
         $scope.reject = function (document) {
-            $log.debug('erer222');
+            var d = documents.$getRecord(document.md5);
+            d.status = 'Rejected';
+            documents.$save(d);
         };
 
+        $scope.view = function (document) {
+            window.open(document.url, '_blank');
+        };
+        // $scope.trust = function (url) {
+        //     return $sce.trustAsResourceUrl(url);
+        //
+        //                 // return $sce.getTrustedResourceUrl($sce.trustAsResourceUrl(url));
+        //
+        // };
         // $scope.url2 = 'https://www.angularjs.org';
         // var qwer = $sce.trustAsUrl('www.angularjs.org');
         // console.log(qwer);
@@ -68,26 +82,6 @@
         //     $scope.url = $sce.trustAsResourceUrl('https://docs.angularjs.org/tutorial');
         // };
         //
-        // $scope.view = function(document){
-        //     $log.debug('VIEW FUNCTION CALLED');
-        //     $log.debug(document.url);
-        //
-        //     // $scope.fileViewUrl = $sce.trustAsResourceUrl(document.url);
-        //     $scope.myFile  = $sce.getTrustedResourceUrl($sce.trustAsResourceUrl(document.url));
-        //     $log.debug($scope.myFile);
-        //
-        // };
-        // $scope.submit = function () {
-        //     if($scope.form.file.$valid && $scope.file) {
-        //         $scope.upload($scope.file);
-        //     }
-        // };
-
-        // $log.debug($scope.uploadedFiles);
-        // $log.debug($scope.invalidFiles);
-        // $log.debug($scope.disabledUpload);
-        // $log.debug($scope.maxFiles);
-        // $log.debug($scope.dropAvailable);
 
         //TODO: on file click
         $scope.$watch('files', function () {
