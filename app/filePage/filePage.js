@@ -1,5 +1,5 @@
 angular.module('Scotty').controller('FilePageCtrl', function ($scope, $firebaseArray, projectDataService, $state,
-                                                              $firebaseObject, Upload, $timeout, $log) {
+                                                              $firebaseObject, Upload, $timeout, $log, $sce) {
 
     var ref = firebase.database().ref().child("documents");
 
@@ -12,12 +12,10 @@ angular.module('Scotty').controller('FilePageCtrl', function ($scope, $firebaseA
 
     // var projectkey = $scope.projectDataService.blockNumber + $scope.projectDataService.borough + $scope.projectDataService.lotNumber + Math.floor((Math.random() * 10) + 1);
 
-    var projectkey = Math.floor((Math.random() * 10) + 1);
+    // var projectkey = Math.floor((Math.random() * 10) + 1);
 
-    $scope.linkr = 'hello';
 
-    /// /TODO: display
-    documents.$loaded().then(function (objects) {
+     documents.$loaded().then(function (objects) {
 
 
         $log.debug('objects');
@@ -32,8 +30,7 @@ angular.module('Scotty').controller('FilePageCtrl', function ($scope, $firebaseA
         // $log.debug(projects.$getRecord(key3));
     });
 
-    //TODO: add file to storage
-    // $scope.addProject = function () {
+     // $scope.addProject = function () {
     //
     //     documents.$loaded().then(function (tasks) {
     //
@@ -48,6 +45,38 @@ angular.module('Scotty').controller('FilePageCtrl', function ($scope, $firebaseA
     //     });
     // };
 
+    $scope.approve = function(document){
+        
+    };
+
+    $scope.reject = function(document){
+
+    };
+
+    
+    // $scope.url2 = 'https://www.angularjs.org';
+    var qwer = $sce.trustAsUrl('www.angularjs.org');
+    console.log(qwer);
+    $scope.url2 = $sce.getTrustedUrl(qwer);
+
+    // $scope.url = $sce.trustAsResourceUrl('https://www.angularjs.org');
+    // $scope.url = ($sce.getTrustedResourceUrl($scope.url));
+    $scope.src = 'http://www.java2s.com/style/download.png';
+    $scope.url = 'www.angularjs.org';
+
+    $scope.changeIt = function () {
+        $scope.url = $sce.trustAsResourceUrl('https://docs.angularjs.org/tutorial');
+    };
+
+    $scope.view = function(document){
+        $log.debug('VIEW FUNCTION CALLED');
+        $log.debug(document.url);
+
+        // $scope.fileViewUrl = $sce.trustAsResourceUrl(document.url);
+        $scope.myFile  = $sce.getTrustedResourceUrl($sce.trustAsResourceUrl(document.url));
+        $log.debug($scope.myFile);
+
+    };
     // $scope.submit = function () {
     //     if($scope.form.file.$valid && $scope.file) {
     //         $scope.upload($scope.file);

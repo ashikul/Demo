@@ -82,11 +82,33 @@
                 <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>-->
             <!--</ul>-->
 
+            test zone:
+            {{url2}}
+            {{url2 + '/'}}
+            {{url}}
+            {{"https://" + url}}
+
+            <img src="{{src}}" />
+            {{myFile}}
+
+            <button ng-click="changeIt()">Change it</button>
+            <iframe ng-src="{{'' + url}}" width="300" height="600" allowfullscreen webkitallowfullscreen></iframe>
+
         </form>
 
 
         <div class="file-view-section">
-            <iframe src="http://plugindoc.mozdev.org/testpages/test.pdf"  width='100%' height='800px' allowfullscreen webkitallowfullscreen></iframe>
+
+
+            <!--<iframe src="https://firebasestorage.googleapis.com/v0/b/notary-fb8b1.appspot.com/o/Ashikul%20Alam%20-%20Resume.pdf?alt=media&token=006b3b4e-b43b-4cd0-8f9f-d38fc4381f72" frameborder="0"></iframe>-->
+            <iframe  ng-src="{{myFile}}">
+                Something wrong...
+            </iframe>
+            <!--<iframe  ng-src="{{fileViewUrl | trustAsResourceUrl}}">-->
+                <!--Something wrong...-->
+            <!--</iframe>-->
+            <!--src="http://plugindoc.mozdev.org/testpages/test.pdf"-->
+            <!--<iframe ng-src={{fileViewUrl}} width='100%' height='800px' allowfullscreen webkitallowfullscreen></iframe>-->
         </div>
     </div>
 
