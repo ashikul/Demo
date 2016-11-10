@@ -56,7 +56,6 @@ angular.module('Scotty').run(function ($rootScope) {
 });
 
 
-
 angular.module('Scotty')
     .config(function ( $compileProvider, $logProvider) {
         // $sceProvider.enabled(false);
