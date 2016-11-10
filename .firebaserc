@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "notary-fb8b1"
+    "default": "notary-fb8b1",
+    "staging": "notary-fb8b1"
   }
 }
