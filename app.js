@@ -55,19 +55,18 @@ angular.module('Scotty').run(function ($rootScope) {
 
 });
 
-angular.module('Scotty')
-    .config(function ($sceProvider, $compileProvider, $logProvider) {
-        $sceProvider.enabled(false);
-        // $logProvider.debugEnabled(false);
-        // $compileProvider.debugInfoEnabled(false);
-
-    });
-
-// //todo: put this in a file
-angular.module('Scotty')
-    .filter('trustAsResourceUrl', ['$sce', function ($sce) {
-        return function (val) {
-            // return $sce.trustAsResourceUrl(val);
-            return $sce.getTrustedResourceUrl($sce.trustAsResourceUrl(val));
-        };
-    }]);
+// angular.module('Scotty')
+//     .config(function ($sceProvider, $compileProvider, $logProvider) {
+//         $sceProvider.enabled(false);
+//         // $logProvider.debugEnabled(false);
+//         // $compileProvider.debugInfoEnabled(false);
+//
+//     });
+// // //todo: put this in a file
+// angular.module('Scotty')
+//     .filter('trustAsResourceUrl', ['$sce', function ($sce) {
+//         return function (val) {
+//             // return $sce.trustAsResourceUrl(val);
+//             return $sce.getTrustedResourceUrl($sce.trustAsResourceUrl(val));
+//         };
+//     }]);

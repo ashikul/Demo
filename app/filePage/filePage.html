@@ -39,7 +39,7 @@
                 <td>{{document.status}}</td>
                 <td>
                     <button class="btn btn-primary" ng-click="approve(document)">Approve</button>
-                    <button class="btn btn-danger" ng-click="reject(document)" >Reject</button>
+                    <button class="btn btn-danger" ng-click="reject(document)">Reject</button>
                     <button class="btn btn-white-fill" ng-click="view(document)">View</button>
 
 
@@ -52,7 +52,7 @@
     </div>
 
     <!--{{linkr}}-->
-
+        {{hey}}
     <!--<a ng-href="{{linkr}}">linkr1</a>-->
 
 
@@ -76,19 +76,27 @@
             </div>
             <!--{{files}}-->
             <!--pdf only-->
-            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+            <!--<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>-->
             <!--Files:-->
             <!--<ul>-->
-                <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>-->
+            <!--<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>-->
             <!--</ul>-->
 
             test zone:
-            {{url2}}
+            {{src}}
+            <embed src="{{src}}" type="application/pdf" width="100%" height="100%">
+
+            <!--<object   ng-model="{{src}}"  type="application/pdf" width="100%" height="100%">-->
+                <!--<p><b>Example fallback content</b>: This browser does not support PDFs. Please download the PDF to view-->
+                    <!--it: <a href="/pdf/sample-3pp.pdf">Download PDF</a>.</p>-->
+            <!--</object>-->
+
+     {{url2}}
             {{url2 + '/'}}
             {{url}}
             {{"https://" + url}}
 
-            <img src="{{src}}" />
+            <img src="{{src}}"/>
             {{myFile}}
 
             <button ng-click="changeIt()">Change it</button>
@@ -101,11 +109,11 @@
 
 
             <!--<iframe src="https://firebasestorage.googleapis.com/v0/b/notary-fb8b1.appspot.com/o/Ashikul%20Alam%20-%20Resume.pdf?alt=media&token=006b3b4e-b43b-4cd0-8f9f-d38fc4381f72" frameborder="0"></iframe>-->
-            <iframe  ng-src="{{myFile}}">
+            <iframe ng-src="{{myFile}}">
                 Something wrong...
             </iframe>
             <!--<iframe  ng-src="{{fileViewUrl | trustAsResourceUrl}}">-->
-                <!--Something wrong...-->
+            <!--Something wrong...-->
             <!--</iframe>-->
             <!--src="http://plugindoc.mozdev.org/testpages/test.pdf"-->
             <!--<iframe ng-src={{fileViewUrl}} width='100%' height='800px' allowfullscreen webkitallowfullscreen></iframe>-->
@@ -153,7 +161,6 @@
 
     <!--End-->
     <!--<div class="file-footer"></div>-->
-
 
     <!--accepted formats-->
     <!--ngf-model-options="modelOptionsObj"-->
