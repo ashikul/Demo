@@ -86,6 +86,7 @@ gulp.task('indexHtml', ['clean'], function () {
             $('link').remove();
             $('body').append('<script src="app.full.min.js"></script>');
             $('head').append('<link rel="stylesheet" href="app.full.min.css">');
+            $('head').append('<script>window.getExternalIceServers = true;</script> <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script> <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script> <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script> <script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>');
         }))
         .pipe(htmlmin(htmlminOptions))
         .pipe(gulp.dest('dist/'));

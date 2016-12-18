@@ -43,13 +43,12 @@
 
 <!-- JS from Bower Components -->
 <script src="bower_components/less.js/dist/less.js" data-concat="false"></script>
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!--<script src="bower_components/jquery/dist/jquery.js"></script>-->
+<!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
 <!--<script src="assets/js/jquery-1.11.1.min.js"></script>-->
 <!--<script src="assets/js/bootstrap.min.js"></script>-->
 
 <!--<script src="bower_components/lodash/dist/lodash.js"></script>-->
-<script src="bower_components/moment/moment.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!--<script src="bower_components/angular-animate/angular-animate.js"></script>-->
@@ -60,6 +59,10 @@
 <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
 
 <!-- Add New Bower Component JS Above -->
+
+<!--<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>-->
+<!--<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>-->
+
 
 <!-- Main App JS -->
 <script src="app.js"></script>
@@ -80,6 +83,18 @@
 
 
 <script src="app/services/projectData-service.js"></script>
+
+
+<script>
+    // add this script before loading "RTCMultiConnection.min.js"
+    window.getExternalIceServers = true;
+</script>
+<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+
+<!--&lt;!&ndash; custom layout for HTML5 audio/video elements &ndash;&gt;-->
+<script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
+<script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
 <!-- Add New Component JS Above -->
 
 <!--<script data-remove="false">-->
@@ -92,7 +107,29 @@
     <!--};-->
     <!--firebase.initializeApp(config);-->
 <!--</script>-->
+<div class="experiment">
+    <h4 style="text-align: center">Notary Appointment Session</h4>
+    <div class="make-center">
+        <input type="text" id="room-id" value="Room Name">
+        <button id="open-room">Open Room</button>
+        <button id="join-room">Join Room</button>
+        <button id="open-or-join-room">Auto Open Or Join Room</button>
+        <br><br>
+        <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
+        <button id="share-file" disabled>Share File</button>
+        <br><br>
+        <button id="btn-leave-room" disabled>Leave /or close the room</button>
 
+        <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+    </div>
+
+    <div id="chat-container">
+        <div id="file-container"></div>
+        <div class="chat-output"></div>
+    </div>
+
+    <div id="videos-container"></div>
+</div>
 
     <div ui-view>
     </div>

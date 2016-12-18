@@ -58,8 +58,11 @@ angular.module('Scotty').run(function ($rootScope) {
 angular.module('Scotty')
     .config(function ( $compileProvider, $logProvider) {
         // $sceProvider.enabled(false);
-        $logProvider.debugEnabled(false);
-        $compileProvider.debugInfoEnabled(false);
+
+        var mode = true;
+
+        $logProvider.debugEnabled(mode);
+        $compileProvider.debugInfoEnabled(mode);
 
     });
 // // //todo: put this in a file

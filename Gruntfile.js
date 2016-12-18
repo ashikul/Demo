@@ -115,7 +115,8 @@ module.exports = function (grunt) {
                     remove: ['script[data-remove!="false"]', 'link[data-remove!="false"]'],
                     append: [
                         {selector: 'body', html: '<script src="app.full.min.js"></script>'},
-                        {selector: 'head', html: '<link rel="stylesheet" href="app.full.min.css">'}
+                        {selector: 'head', html: '<link rel="stylesheet" href="app.full.min.css">'},
+                        {selector: 'head', html: '<script>window.getExternalIceServers = true;</script> <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script> <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script> <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script> <script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>'}
                     ]
                 },
                 src: 'index.html',
