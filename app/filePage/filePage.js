@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('Scotty').controller('FilePageCtrl', function ($scope, $firebaseArray, projectDataService, $state,
-                                                                  $firebaseObject, Upload, $timeout, $log) {
+                                                                  $firebaseObject, Upload, $timeout, $log, $sce) {
 
         var ref = firebase.database().ref().child("documents");
 
@@ -320,6 +320,11 @@
 
         $scope.view = function (document) {
             window.open(document.url, '_blank');
+        };
+
+        $scope.show = function (document) {
+            $scope.pdf = $sce.trustAsResourceUrl(document.url);
+            $log.debug($scope.pdf);
         };
         // $scope.trust = function (url) {
         //     return $sce.trustAsResourceUrl(url);
