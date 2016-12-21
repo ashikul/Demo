@@ -1,6 +1,9 @@
 {
   "name": "Scotty",
   "version": "0.0.0",
+  "scripts": {
+    "deploy": "grunt build && firebase deploy"
+  },
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-angular-templates": "~0.5",

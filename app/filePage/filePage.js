@@ -332,7 +332,7 @@
         $scope.sign = function (document) {
             // $scope.pdf = $sce.trustAsResourceUrl(document.url);
             // $log.debug($scope.pdf);
-
+            console.log('click sign');
             //TODO: http get call
             //TODO: get the returned url
             //TODO: open hello sign with it
@@ -349,18 +349,35 @@
             //     openSign(urlSign);
             // });
 
-
 //THIS WORKS
 //             openSign('https://www.hellosign.com/editor/embeddedSign?signature_id=054aef76143c2c2014d5efe5e35d8565&token=eeb2f684b14e80ac7faf3cb4c78105ee');
+            $http({
+                method: 'GET',
+                url: 'http://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/NDA'
+            }).then(function successCallback (response) {
+                console.log('sign GET call');
+                console.log(response);
+                openSign(response.data);
+                // return response;
+                // return response;
+                // result = response;
+                // return openSign(response);
 
-                // getSignature();
-            $http.get("http://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/NDA")
-                .then(function(response) {
-                        console.log('GET call');
-                        console.log(response);
-                });
-
-
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback (response) {
+                console.log('ERROR');
+                console.log(response);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+            // getSignature();
+            // getSignature().then(function (response) {
+            //     console.log('');
+            //     console.log(response);
+            //     return response;
+            // });
+            // getSignature();
         };
 
         var openSign = function (url) {
@@ -374,7 +391,62 @@
             });
         }
 
+        // $http.get("https://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/NDA")
+        //     .then(function (response) {
+        //         console.log('GET call');
+        //         console.log(response);
+        //         return response;
+        //     });
+
+        console.log('test');
+        // $http({
+        //     method: 'GET',
+        //     url: 'http://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/'
+        // }).then(function successCallback (response) {
+        //     console.log('GET call');
+        //     console.log(response);
+        //     return response;
+        //     // return response;
+        //     // result = response;
+        //     // return openSign(response);
+        //
+        //     // this callback will be called asynchronously
+        //     // when the response is available
+        // }, function errorCallback (response) {
+        //     console.log('ERROR');
+        //     console.log(response);
+        //     // called asynchronously if an error occurs
+        //     // or server returns response with an error status.
+        // });
+
         var getSignature = function () {
+            // return $http.get("https://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/NDA")
+            //     .then(function (response) {
+            //         console.log('GET call');
+            //         console.log(response);
+            //         return response;
+            //     });
+
+            return $http({
+                method: 'GET',
+                url: 'http://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/'
+            }).then(function successCallback (response) {
+                console.log('GET call');
+                console.log(response);
+                return response;
+                // return response;
+                // result = response;
+                // return openSign(response);
+
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback (response) {
+                console.log('ERROR');
+                console.log(response);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
             // return $http({
             //     method: 'GET',
             //     url: 'http://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/NDA'
