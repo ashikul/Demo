@@ -1,7 +1,7 @@
 (function () {
 
     angular.module('Scotty').controller('FilePageCtrl', function ($scope, $firebaseArray, projectDataService, $state,
-                                                                  $firebaseObject, Upload, $timeout, $log, $sce) {
+                                                                  $firebaseObject, Upload, $timeout, $log, $sce, $http) {
 
         var ref = firebase.database().ref().child("documents");
 
@@ -9,6 +9,9 @@
 
         //TODO: display this
         var documents = $firebaseArray(ref);
+
+        HelloSign.init("d6549f6f55de34ef02b0b9004a97272b");
+
         // $log.debug(documents);
         // $scope.projectDataService = projectDataService;
 
@@ -29,40 +32,39 @@
             // $log.debug(projects.$getRecord(key1));
             // $log.debug(projects.$getRecord(key2));
             // $log.debug(projects.$getRecord(key3));
-            (function() {
+            (function () {
 
                 console.log('hello');
                 console.log(document.getElementById('open-room'));
 
-
-                document.getElementById('open-room').onclick = function() {
+                document.getElementById('open-room').onclick = function () {
                     disableInputButtons();
-                    connection.open(document.getElementById('room-id').value, function() {
+                    connection.open(document.getElementById('room-id').value, function () {
                         showRoomURL(connection.sessionid);
                     });
                 };
 
-                document.getElementById('join-room').onclick = function() {
+                document.getElementById('join-room').onclick = function () {
                     disableInputButtons();
                     connection.join(document.getElementById('room-id').value);
                 };
 
-                document.getElementById('open-or-join-room').onclick = function() {
+                document.getElementById('open-or-join-room').onclick = function () {
                     disableInputButtons();
-                    connection.openOrJoin(document.getElementById('room-id').value, function(isRoomExists, roomid) {
+                    connection.openOrJoin(document.getElementById('room-id').value, function (isRoomExists, roomid) {
                         if(!isRoomExists) {
                             showRoomURL(roomid);
                         }
                     });
                 };
 
-                document.getElementById('btn-leave-room').onclick = function() {
+                document.getElementById('btn-leave-room').onclick = function () {
                     this.disabled = true;
 
                     if(connection.isInitiator) {
                         // use this method if you did NOT set "autoCloseEntireSession===true"
                         // for more info: https://github.com/muaz-khan/RTCMultiConnection#closeentiresession
-                        connection.closeEntireSession(function() {
+                        connection.closeEntireSession(function () {
                             document.querySelector('h1').innerHTML = 'Entire session has been closed.';
                         });
                     }
@@ -75,19 +77,19 @@
 // ................FileSharing/TextChat Code.............
 // ......................................................
 
-                document.getElementById('share-file').onclick = function() {
+                document.getElementById('share-file').onclick = function () {
                     var fileSelector = new FileSelector();
-                    fileSelector.selectSingleFile(function(file) {
+                    fileSelector.selectSingleFile(function (file) {
                         connection.send(file);
                     });
                 };
 
-                document.getElementById('input-text-chat').onkeyup = function(e) {
-                    if (e.keyCode != 13) return;
+                document.getElementById('input-text-chat').onkeyup = function (e) {
+                    if(e.keyCode != 13) return;
 
                     // removing trailing/leading whitespace
                     this.value = this.value.replace(/^\s+|\s+$/g, '');
-                    if (!this.value.length) return;
+                    if(!this.value.length) return;
 
                     connection.send(this.value);
                     appendDIV(this.value);
@@ -96,7 +98,7 @@
 
                 var chatContainer = document.querySelector('.chat-output');
 
-                function appendDIV(event) {
+                function appendDIV (event) {
                     var div = document.createElement('div');
                     div.innerHTML = event.data || event;
                     chatContainer.insertBefore(div, chatContainer.firstChild);
@@ -135,7 +137,7 @@
                 };
 
                 connection.videosContainer = document.getElementById('videos-container');
-                connection.onstream = function(event) {
+                connection.onstream = function (event) {
                     var width = parseInt(connection.videosContainer.clientWidth / 2) - 20;
                     var mediaElement = getMediaElement(event.mediaElement, {
                         title: event.userid,
@@ -146,14 +148,14 @@
 
                     connection.videosContainer.appendChild(mediaElement);
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         mediaElement.media.play();
                     }, 5000);
 
                     mediaElement.id = event.streamid;
                 };
 
-                connection.onstreamended = function(event) {
+                connection.onstreamended = function (event) {
                     var mediaElement = document.getElementById(event.streamid);
                     if(mediaElement) {
                         mediaElement.parentNode.removeChild(mediaElement);
@@ -163,7 +165,7 @@
                 connection.onmessage = appendDIV;
                 connection.filesContainer = document.getElementById('file-container');
 
-                connection.onopen = function() {
+                connection.onopen = function () {
                     document.getElementById('share-file').disabled = false;
                     document.getElementById('input-text-chat').disabled = false;
                     document.getElementById('btn-leave-room').disabled = false;
@@ -171,7 +173,7 @@
                     document.querySelector('h1').innerHTML = 'You are connected with: ' + connection.getAllParticipants().join(', ');
                 };
 
-                connection.onclose = function() {
+                connection.onclose = function () {
                     if(connection.getAllParticipants().length) {
                         document.querySelector('h1').innerHTML = 'You are still connected with: ' + connection.getAllParticipants().join(', ');
                     }
@@ -180,7 +182,7 @@
                     }
                 };
 
-                connection.onEntireSessionClosed = function(event) {
+                connection.onEntireSessionClosed = function (event) {
                     document.getElementById('share-file').disabled = true;
                     document.getElementById('input-text-chat').disabled = true;
                     document.getElementById('btn-leave-room').disabled = true;
@@ -190,7 +192,7 @@
                     document.getElementById('join-room').disabled = false;
                     document.getElementById('room-id').disabled = false;
 
-                    connection.attachStreams.forEach(function(stream) {
+                    connection.attachStreams.forEach(function (stream) {
                         stream.stop();
                     });
 
@@ -199,12 +201,12 @@
                     document.querySelector('h1').innerHTML = 'Entire session has been closed by the moderator: ' + event.userid;
                 };
 
-                connection.onUserIdAlreadyTaken = function(useridAlreadyTaken, yourNewUserId) {
+                connection.onUserIdAlreadyTaken = function (useridAlreadyTaken, yourNewUserId) {
                     // seems room is already opened
                     connection.join(useridAlreadyTaken);
                 };
 
-                function disableInputButtons() {
+                function disableInputButtons () {
                     document.getElementById('open-or-join-room').disabled = true;
                     document.getElementById('open-room').disabled = true;
                     document.getElementById('join-room').disabled = true;
@@ -216,7 +218,7 @@
 // ......................Handling Room-ID................
 // ......................................................
 
-                function showRoomURL(roomid) {
+                function showRoomURL (roomid) {
                     // var roomHashURL = '#' + roomid;
                     var roomQueryStringURL = '?roomid=' + roomid;
 
@@ -233,27 +235,28 @@
                     roomURLsDiv.style.display = 'block';
                 }
 
-                (function() {
+                (function () {
                     var params = {},
                         r = /([^&=]+)=?([^&]*)/g;
 
-                    function d(s) {
+                    function d (s) {
                         return decodeURIComponent(s.replace(/\+/g, ' '));
                     }
+
                     var match, search = window.location.search;
-                    while (match = r.exec(search.substring(1)))
+                    while(match = r.exec(search.substring(1)))
                         params[d(match[1])] = d(match[2]);
                     window.params = params;
                 })();
 
                 var roomid = '';
-                if (localStorage.getItem(connection.socketMessageEvent)) {
+                if(localStorage.getItem(connection.socketMessageEvent)) {
                     roomid = localStorage.getItem(connection.socketMessageEvent);
                 } else {
                     roomid = connection.token();
                 }
                 document.getElementById('room-id').value = roomid;
-                document.getElementById('room-id').onkeyup = function() {
+                document.getElementById('room-id').onkeyup = function () {
                     localStorage.setItem(connection.socketMessageEvent, this.value);
                 };
 
@@ -272,8 +275,8 @@
                     localStorage.setItem(connection.socketMessageEvent, roomid);
 
                     // auto-join-room
-                    (function reCheckRoomPresence() {
-                        connection.checkPresence(roomid, function(isRoomExists) {
+                    (function reCheckRoomPresence () {
+                        connection.checkPresence(roomid, function (isRoomExists) {
                             if(isRoomExists) {
                                 connection.join(roomid);
                                 return;
@@ -282,7 +285,6 @@
                             setTimeout(reCheckRoomPresence, 5000);
                         });
                     })();
-
 
                     // disableInputButtons();
                 }
@@ -325,6 +327,74 @@
         $scope.show = function (document) {
             $scope.pdf = $sce.trustAsResourceUrl(document.url);
             $log.debug($scope.pdf);
+        };
+
+        $scope.sign = function (document) {
+            // $scope.pdf = $sce.trustAsResourceUrl(document.url);
+            // $log.debug($scope.pdf);
+
+            //TODO: http get call
+            //TODO: get the returned url
+            //TODO: open hello sign with it
+
+            //TODO: later after confirm sign, update in backend and frontend....
+            //TODO: prolly set firebase to signed and disable it...
+
+            // var urlSign;
+
+            // getSignature().then(function (response) {
+            //     console.log('getSign Call');
+            //     console.log(response);
+            //     urlSign = response;
+            //     openSign(urlSign);
+            // });
+
+
+//THIS WORKS
+//             openSign('https://www.hellosign.com/editor/embeddedSign?signature_id=054aef76143c2c2014d5efe5e35d8565&token=eeb2f684b14e80ac7faf3cb4c78105ee');
+
+                // getSignature();
+            $http.get("http://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/NDA")
+                .then(function(response) {
+                        console.log('GET call');
+                        console.log(response);
+                });
+
+
+        };
+
+        var openSign = function (url) {
+            HelloSign.open({
+                url: url,
+                allowCancel: true,
+                messageListener: function (eventData) {
+                    // do something
+                },
+                skipDomainVerification: true
+            });
+        }
+
+        var getSignature = function () {
+            // return $http({
+            //     method: 'GET',
+            //     url: 'http://nodeaws-dev.us-east-1.elasticbeanstalk.com/sign/NDA'
+            // }).then(function successCallback (response) {
+            //     console.log('GET call');
+            //     console.log(response);
+            //     return response;
+            //     // return response;
+            //     // result = response;
+            //     // return openSign(response);
+            //
+            //     // this callback will be called asynchronously
+            //     // when the response is available
+            // }, function errorCallback (response) {
+            //     console.log('ERROR');
+            //     console.log(response);
+            //     // called asynchronously if an error occurs
+            //     // or server returns response with an error status.
+            // });
+
         };
         // $scope.trust = function (url) {
         //     return $sce.trustAsResourceUrl(url);
@@ -434,15 +504,6 @@
         //         });
         //     });
         // }
-
-
-
-
-
-
-
-
-
 
     });
 })();
