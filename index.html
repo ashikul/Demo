@@ -1,142 +1,46 @@
 <!DOCTYPE html>
-<html ng-app="Scotty">
+<html ng-app=Scotty>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <meta charset=utf-8>
     <title>Scotty</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Scotty"/>
-    <meta name="keywords" content="Scotty"/>
-    <meta name="author" content="Scotty"/>
-    <!-- Favicons (created with http://realfavicongenerator.net/)-->
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-touch-icon-60x60.png">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="assets/img/favicons/manifest.json">
-    <link rel="shortcut icon" href="assets/img/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#00a8ff">
-    <meta name="msapplication-config" content="assets/img/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-
-    <link href="app.less" type="text/css" rel="stylesheet/less">
+    <meta charset=UTF-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=description content=Scotty>
+    <meta name=keywords content=Scotty>
+    <meta name=author content=Scotty>
+    <meta name=msapplication-TileColor content=#00a8ff>
+    <meta name=msapplication-config content=assets/img/favicons/browserconfig.xml>
+    <meta name=theme-color content=#ffffff>
+    <link rel=stylesheet href=./app.full.min.css>
+    <script>window.getExternalIceServers = true;</script>
+    <script src=https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js></script>
+    <script src=https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js></script>
+    <script src=https://cdn.webrtc-experiment.com/getMediaElement.js></script>
+    <script src=https://cdn.webrtc-experiment.com:443/FileBufferReader.js></script>
+    <script src=https://s3.amazonaws.com/cdn.hellosign.com/public/js/hellosign-embedded.LATEST.min.js></script>
 </head>
 <body>
-
-<!--<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>-->
-<!--<script>-->
-    <!--// Initialize Firebase-->
-    <!--var config = {-->
-        <!--apiKey: "AIzaSyBYbbS3jNmLMYgip3ab2yjrYiAsL8_Xp4A",-->
-        <!--authDomain: "countme-41154.firebaseapp.com",-->
-        <!--databaseURL: "https://countme-41154.firebaseio.com",-->
-        <!--storageBucket: "countme-41154.appspot.com",-->
-    <!--};-->
-    <!--firebase.initializeApp(config);-->
-<!--</script>-->
-
-<!-- Livereload script for development only (stripped during dist build) -->
-<script src="http://localhost:35729/livereload.js" data-concat="false"></script>
-
-<!-- JS from Bower Components -->
-<script src="bower_components/less.js/dist/less.js" data-concat="false"></script>
-<!--<script src="bower_components/jquery/dist/jquery.js"></script>-->
-<!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
-<!--<script src="assets/js/jquery-1.11.1.min.js"></script>-->
-<!--<script src="assets/js/bootstrap.min.js"></script>-->
-
-<!--<script src="bower_components/lodash/dist/lodash.js"></script>-->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<!--<script src="bower_components/angular-animate/angular-animate.js"></script>-->
-<!--<script src="bower_components/angular-resource/angular-resource.js"></script>-->
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="bower_components/firebase/firebase.js"></script>
-<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-
-<!-- Add New Bower Component JS Above -->
-
-<!--<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>-->
-<!--<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>-->
-
-
-<!-- Main App JS -->
-<script src="app.js"></script>
-<script src="app/filePage/filePage.js"></script>
-
-<!--<script src="app/homePage/homePage.js"></script>-->
-<!--<script src="app/projectPage/projectPage.js"></script>-->
-<!--<script src="app/modals/enterProject-modal/enterProject-modal.js"></script>-->
-<!--<script src="app/adminPage/adminPage.js"></script>-->
-
-
-<!-- Scripts -->
-<!--<script src="assets/js/owl.carousel.min.js"></script>-->
-<!--<script src="assets/js/wow.min.js"></script>-->
-<!--<script src="assets/js/typewriter.js"></script>-->
-<!--<script src="assets/js/jquery.onepagenav.js"></script>-->
-<!--<script src="assets/js/main.js"></script>-->
-
-
-<script src="app/services/projectData-service.js"></script>
-
-
-<script>
-    // add this script before loading "RTCMultiConnection.min.js"
-    window.getExternalIceServers = true;
-</script>
-<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
-<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
-
-<!--&lt;!&ndash; custom layout for HTML5 audio/video elements &ndash;&gt;-->
-<script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
-<script src="https://cdn.webrtc-experiment.com:443/FileBufferReader.js"></script>
-
-<script type="text/javascript" src="https://s3.amazonaws.com/cdn.hellosign.com/public/js/hellosign-embedded.LATEST.min.js"></script>
-
-
-<!-- Add New Component JS Above -->
-
-<!--<script data-remove="false">-->
-    <!--// Initialize the Firebase SDK-->
-    <!--var config = {-->
-        <!--apiKey: "AIzaSyBYbbS3jNmLMYgip3ab2yjrYiAsL8_Xp4A",-->
-        <!--authDomain: "countme-41154.firebaseapp.com",-->
-        <!--databaseURL: "https://countme-41154.firebaseio.com",-->
-        <!--storageBucket: "countme-41154.appspot.com",-->
-    <!--};-->
-    <!--firebase.initializeApp(config);-->
-<!--</script>-->
-<div class="experiment">
-    <h4 style="text-align: center">Notary Appointment Session</h4>
-    <div class="make-center">
-        <input type="text" id="room-id" value="Room Name">
-        <button id="open-room">Open Room</button>
-        <button id="join-room">Join Room</button>
-        <button id="open-or-join-room">Auto Open Or Join Room</button>
+<div class=experiment><h4 style="text-align: center">Notary Appointment Session</h4>
+    <div class=make-center><input type=text id=room-id value="Room Name">
+        <button id=open-room>Open Room</button>
+        <button id=join-room>Join Room</button>
+        <button id=open-or-join-room>Auto Open Or Join Room</button>
+        <br><br><input type=text id=input-text-chat placeholder="Enter Text Chat" disabled>
+        <button id=share-file disabled>Share File</button>
         <br><br>
-        <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
-        <button id="share-file" disabled>Share File</button>
-        <br><br>
-        <button id="btn-leave-room" disabled>Leave /or close the room</button>
-
-        <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+        <button id=btn-leave-room disabled>Leave /or close the room</button>
+        <div id=room-urls
+             style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0"></div>
     </div>
-
-    <div id="chat-container">
-        <div id="file-container"></div>
-        <div class="chat-output"></div>
+    <div id=chat-container>
+        <div id=file-container></div>
+        <div class=chat-output></div>
     </div>
-    <div id="videos-container"></div>
+    <div id=videos-container></div>
 </div>
-
-    <div ui-view>
-    </div>
-
-
+<div ui-view=""></div>
+<script src=./app.full.min.js></script>
 </body>
 </html>
